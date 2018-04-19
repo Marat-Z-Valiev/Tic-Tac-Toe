@@ -1,0 +1,65 @@
+@import url("https://fonts.googleapis.com/css?family=Arapey");
+body {
+  font-family: 'Arapey', serif;
+  background-image: url("../images/bg.jpg");
+}
+
+h1 {
+  text-align: center;
+  font-size: 3em;
+}
+
+.start-game {
+  text-align: center;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  width: 200px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
+}
+
+.start-game button {
+  width: 50px;
+  height: 50px;
+}
+
+.start-game .reset {
+  grid-column: 1/3;
+  width: 100px;
+  opacity: 0;
+}
+
+.game-board {
+  display: grid;
+  border: 2px solid #FFF;
+  height: 350px;
+  width: 350px;
+  margin: 0 auto;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  visibility: hidden;
+}
+
+.game-board .board-cell {
+  border: 2px solid #FFF;
+  font-size: 2em;
+  cursor: pointer;
+  background: none;
+}
+
+.game-board:active, .game-board:focus {
+  outline: none;
+}
+
+.game-board button:disabled,
+.game-board button[disabled] {
+  color: black;
+  cursor: initial;
+}
+
+.end-game {
+  text-align: center;
+  font-size: 2em;
+  display: none;
+}
