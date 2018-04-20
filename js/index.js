@@ -16,8 +16,6 @@ $(function () {
         selectO.fadeTo('slow', 0);
         resetButton.fadeTo('slow', 1);
         gameBoard.css('visibility', 'visible');
-        // gameBoard.fadeTo('slow', 1);
-        // gameBoard.show();
         human = 'X';
         ai = 'O';
     });
@@ -25,8 +23,6 @@ $(function () {
     selectO.click(function () {
         selectX.fadeTo('slow', 0);
         selectO.fadeTo('slow', 0);
-        // gameBoard.fadeTo('slow', 1);
-        // gameBoard.show();
         resetButton.fadeTo('slow', 1);
         gameBoard.css('visibility', 'visible');
         human = 'O';
@@ -37,18 +33,8 @@ $(function () {
         if($(this).html() === ''){
             selection = parseInt($(this).attr('id'));
             move(board, selection);
-            $(this).html(board[selection]);
+            $(this).html(`<div class="content">${board[selection]}</div>`);
             status(board);
-            $(this).prop('disabled', true);
-        }
-        // else if($(this).html() !== ''){
-        //     $(this).prop('disabled', true);
-        // }
-        
-        else{
-            $(this).click(function() {
-                $(this).prop('disabled', true);
-            });
         }
     });
 });
@@ -56,14 +42,13 @@ $(function () {
 function reset() {
     turns = 0;
     board = ["", "", "", "", "", "", "", "", ""];
-    // gameBoard.fadeTo('slow', 0);
     gameBoard.css('visibility', 'hidden');
     selectX.fadeTo('slow', 1);
     selectO.fadeTo('slow', 1);
     resetButton.fadeTo('slow', 0);
     endGame.hide();
     cells.html('');
-    cells.prop('disabled', false);
+    cells.css('pointer-events','auto');
 }
 
 resetButton.click(function () {
@@ -74,25 +59,23 @@ function move(board, selection) {
     if (board[selection] == "") {
         turns++;
         board[selection] = human;
-        console.log(cells.text());
     }
-    // else if(board[selection] != ""){
-    //     cells.prop('disabled', true);
-    // }
 }
 
 function status(board) {
     if (win(board, human)) { // If you win
+        cells.css('pointer-events','none');
         setTimeout(function () {
             $(".win").show();
         }, 600);
         setTimeout(function () {
-            //    reset();
         }, 3000);
         return;
-    } else if (turns == 9) {
+    } 
+    else if (turns == 9) {
         draw();
-    } else {
+    } 
+    else {
         // Computer's turn
         turns++;
         strategy();
@@ -100,21 +83,25 @@ function status(board) {
         board[bestMove] = ai;
         let coMove = "#" + bestMove;
         setTimeout(function () {
-            $(coMove).html(ai);
+            $(coMove).html(`<div class="content">${ai}</div>`);
         }, 700);
         if (win(board, ai)) { // If computer wins
+            console.log(board);
+            cells.css('pointer-events','none');
             setTimeout(function () {
                 $(".lose").show();
             }, 800);
             setTimeout(function () {
-                //   reset();
             }, 3000);
             return;
-        } else if (turns == 9) {
+        } 
+        else if (turns == 9) {
+            cells.css('pointer-events','none');
             setTimeout(function () {
                 $(".draw").show();
             }, 800);
-        } else {
+        } 
+        else {
             // INDICATE THAT IT'S THE HUMAN'S TURN
             console.log("Your turn!");
         }
@@ -124,7 +111,6 @@ function status(board) {
 function draw() {
     $(".draw").show();
     setTimeout(function () {
-        //   reset();
     }, 3000);
     return;
 }
@@ -139,19 +125,26 @@ function strategy() {
     }
     if (checkWin(empty) === true) {
         return bestMove;
-    } else if (checkLose(empty) === true) {
+    } 
+    else if (checkLose(empty) === true) {
         return bestMove;
-    } else if (board[4] === "") {
-        return bestMove = 4;
-    } else if (board[0] === "") {
+    } 
+    // else if (board[4] === "") {
+    //     return bestMove = 4;
+    // } 
+    else if (board[0] === "") {
         return bestMove = 0;
-    } else if (board[2] === "") {
-        return bestMove = 2;
-    } else if (board[6] === "") {
+    } 
+    // else if (board[2] === "") {
+    //     return bestMove = 2;
+    // } 
+    else if (board[6] === "") {
         return bestMove = 6;
-    } else if (board[8] === "") {
+    } 
+    else if (board[8] === "") {
         return bestMove = 8;
-    } else {
+    } 
+    else {
         return bestMove = empty[0];
     }
 }

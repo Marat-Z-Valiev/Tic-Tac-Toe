@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,38 +9,40 @@
     <link rel="stylesheet" href="css/style.css">
     <title>Tic-Tac-Toe</title>
 </head>
+
 <body>
     <header>
-    <h1>Tic Tac Toe</h1>
+        <h1>Tic Tac Toe</h1>
     </header>
     <main>
-    <div class="start-game">
-     <button id="select-X">X</button>   
-     <button id="select-O">O</button>
-     <button id="reset" class="reset">Reset</button>  
-    </div>
-    <div class="game-board">
-     <button id="0" class="board-cell"></button>
-     <button id="1" class="board-cell"></button>
-     <button id="2" class="board-cell"></button>
-     <button id="3" class="board-cell"></button>
-     <button id="4" class="board-cell"></button>
-     <button id="5" class="board-cell"></button>
-     <button id="6" class="board-cell"></button>
-     <button id="7" class="board-cell"></button>
-     <button id="8" class="board-cell"></button>   
-    </div>
-    <div class="end-game win">
-        <p>You won</p>
-    </div> 
-    <div class="end-game lose">
-        <p>You lost</p>
-    </div> 
-    <div class="end-game draw">
-        <p>Draw</p>
-    </div> 
+        <div class="start-game">
+            <button id="select-X">X</button>
+            <button id="select-O">O</button>
+            <button id="reset" class="reset">Reset</button>
+            <div class="end-game win">
+                    <div>You won</div>
+                </div>
+                <div class="end-game lose">
+                    <div>You lost</div>
+                </div>
+                <div class="end-game draw">
+                    <div>Draw</div>
+                </div>
+        </div>
+        <div class="game-board">
+            <div id="0" class="board-cell"></div>
+            <div id="1" class="board-cell"></div>
+            <div id="2" class="board-cell"></div>
+            <div id="3" class="board-cell"></div>
+            <div id="4" class="board-cell"></div>
+            <div id="5" class="board-cell"></div>
+            <div id="6" class="board-cell"></div>
+            <div id="7" class="board-cell"></div>
+            <div id="8" class="board-cell"></div>
+        </div>
     </main>
     <script src="js/jquery-3.2.1.js"></script>
     <script src="js/index.js"></script>
 </body>
+
 </html>
