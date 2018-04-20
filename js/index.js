@@ -28,7 +28,7 @@ $(function () {
         human = 'O';
         ai = 'X';
     });
-    //Place symbol 
+    //Make a turn 
     cells.on('click', function () {
         if($(this).html() === ''){
             selection = parseInt($(this).attr('id'));
@@ -38,7 +38,7 @@ $(function () {
         }
     });
 });
-
+//Reset the game
 function reset() {
     turns = 0;
     board = ["", "", "", "", "", "", "", "", ""];
@@ -48,7 +48,7 @@ function reset() {
     resetButton.fadeTo('slow', 0);
     endGame.hide();
     cells.html('');
-    cells.css('pointer-events','auto');
+    cells.css({'pointer-events':'auto', 'background':'none'});
 }
 
 resetButton.click(function () {
@@ -63,13 +63,12 @@ function move(board, selection) {
 }
 
 function status(board) {
-    if (win(board, human)) { // If you win
+    //Your turn
+    if (win(board, human)) {
         cells.css('pointer-events','none');
         setTimeout(function () {
             $(".win").show();
         }, 600);
-        setTimeout(function () {
-        }, 3000);
         return;
     } 
     else if (turns == 9) {
@@ -86,13 +85,10 @@ function status(board) {
             $(coMove).html(`<div class="content">${ai}</div>`);
         }, 700);
         if (win(board, ai)) { // If computer wins
-            console.log(board);
             cells.css('pointer-events','none');
             setTimeout(function () {
                 $(".lose").show();
             }, 800);
-            setTimeout(function () {
-            }, 3000);
             return;
         } 
         else if (turns == 9) {
@@ -129,15 +125,15 @@ function strategy() {
     else if (checkLose(empty) === true) {
         return bestMove;
     } 
-    // else if (board[4] === "") {
-    //     return bestMove = 4;
-    // } 
+    else if (board[4] === "") {
+        return bestMove = 4;
+    } 
     else if (board[0] === "") {
         return bestMove = 0;
     } 
-    // else if (board[2] === "") {
-    //     return bestMove = 2;
-    // } 
+    else if (board[2] === "") {
+        return bestMove = 2;
+    }
     else if (board[6] === "") {
         return bestMove = 6;
     } 
@@ -158,6 +154,7 @@ function checkWin(empty) {
             return true;
         }
         board[empty[i]] = "";
+        // console.log('board win '+ board);
     }
 }
 
