@@ -57,6 +57,7 @@ h1 {
   border-radius: 30px;
   font-family: 'Arapey', serif;
   position: absolute;
+  -webkit-margin-start: 22px;
 }
 
 .start-game .win {

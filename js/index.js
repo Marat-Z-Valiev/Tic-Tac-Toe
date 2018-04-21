@@ -35,7 +35,6 @@ $(function () {
         if ($(this).html() === '') {
             selection = parseInt($(this).attr('id'));
             humanArr.push('#' + selection);
-            console.log(humanArr);
             move(board, selection);
             $(this).html(`<div class='content'>${board[selection]}</div>`);
             status(board);
@@ -77,7 +76,7 @@ function status(board) {
         cells.css('pointer-events', 'none');
         setTimeout(function () {
             $('.win').show();
-            //Highlight winning combimation
+            //Highlight winning combination
             if (humanArr.length === 3) {
                 $(`${humanArr[0]},${humanArr[1]},${humanArr[2]}`).css('background', '#0edf07');
             } else {
@@ -102,7 +101,7 @@ function status(board) {
             cells.css('pointer-events', 'none');
             setTimeout(function () {
                 $('.lose').show();
-                //Highlight winning combimation
+                //Highlight winning combination
                 if (aiArr.length === 3) {
                     $(`${aiArr[0]},${aiArr[1]},${aiArr[2]}`).css('background', '#f82904');
                 } else {
